@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Menu Inicial — Protótipo</title>
+  <meta name="description" content="Menu inicial estático — protótipo gerado pelo assistant." />
+  <style>
+    :root{
+      --bg1: #0f172a; /* night blue */
+      --bg2: #071029; /* deep */
+      --accent: #7c3aed; /* roxo */
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.04);
+      --text: #e6eef8;
+      --muted: #9fb0d4;
+      --radius: 14px;
+      --shadow: 0 8px 30px rgba(2,6,23,0.6);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+
+    body{
+      background: radial-gradient(1200px 700px at 10% 10%, rgba(124,58,237,0.14), transparent 5%),
+                  radial-gradient(900px 500px at 90% 90%, rgba(59,130,246,0.08), transparent 10%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;align-items:center;justify-content:center;
+      padding:32px;
+      gap:20px;
+    }
+
+    .container{
+      width:100%;max-width:980px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;padding:28px;box-shadow:var(--shadow);backdrop-filter: blur(6px);
+      display:grid;grid-template-columns: 1fr 360px;gap:24px;align-items:center;
+    }
+
+    /* Logo + title */
+    .brand{display:flex;gap:16px;align-items:center}
+    .logo{
+      width:74px;height:74px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#06b6d4);
+      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;color:white;box-shadow: 0 6px 18px rgba(124,58,237,0.25);
+    }
+    .title{font-size:20px;font-weight:600}
+    .subtitle{color:var(--muted);font-size:13px;margin-top:6px}
+
+    /* Left area: description or preview */
+    .left{padding:12px}
+    .panel{
+      background: linear-gradient(180deg,var(--glass),var(--glass-2));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);
+    }
+    .art{
+      height:220px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600;border:1px dashed rgba(255,255,255,0.03);
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+    }
+
+    /* Right area: menu */
+    nav.menu{display:flex;flex-direction:column;gap:12px}
+    .menu-button{
+      display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);cursor:pointer;transition:all 220ms ease;outline:none;
+    }
+    .menu-button:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(2,6,23,0.45)}
+    .menu-button:active{transform:translateY(-1px) scale(0.998)}
+    .menu-button:focus{box-shadow:0 0 0 4px rgba(124,58,237,0.12)}
+
+    .badge{min-width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .label{flex:1;text-align:left}
+    .hint{color:var(--muted);font-size:13px}
+
+    .cta{display:flex;gap:12px;margin-top:8px}
+    .primary{background:linear-gradient(90deg,var(--accent), #06b6d4);color:white;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .secondary{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px 14px;border-radius:10px;color:var(--text);cursor:pointer}
+
+    footer{grid-column:1/-1;margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* responsive */
+    @media (max-width:880px){
+      .container{grid-template-columns:1fr;}
+      .art{height:160px}
+    }
+
+    /* small micro-interactions */
+    .pulse{position:relative}
+    .pulse::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(124,58,237,0.12);animation:pulse 2.6s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(124,58,237,0.12)}70%{box-shadow:0 0 0 18px rgba(124,58,237,0.00)}100%{box-shadow:0 0 0 0 rgba(124,58,237,0.00)}}
+
+  </style>
+</head>
+<body>
+  <main class="container" role="application" aria-label="Menu inicial do protótipo">
+    <section class="left">
+      <div class="brand">
+        <div class="logo">MS</div>
+        <div>
+          <div class="title">Menu Inicial — Protótipo</div>
+          <div class="subtitle">Interface minimal para prototipação rápida</div>
+        </div>
+      </div>
+
+      <div style="height:16px"></div>
+
+      <div class="panel">
+        <div class="art" aria-hidden="true">Preview / Arte (placeholder)</div>
+        <div style="height:12px"></div>
+        <p style="margin:0;color:var(--muted);font-size:14px">Este é um menu inicial estático projetado para ser usado como ponto de partida. Botões com foco, estados e microanimações incluídos.</p>
+      </div>
+    </section>
+
+    <aside>
+      <nav class="menu" aria-label="Menu principal">
+        <!-- Cada botão aqui é um exemplo de entrada de menu inicial. -->
+        <button class="menu-button" id="btn-play">
+          <div class="badge">▶</div>
+          <div class="label">
+            <div style="font-weight:700">Jogar</div>
+            <div class="hint">Começar uma nova sessão</div>
+          </div>
+        </button>
+
+        <button class="menu-button" id="btn-load">
+          <div class="badge">⤓</div>
+          <div class="label">
+            <div style="font-weight:700">Carregar</div>
+            <div class="hint">Continuar onde parou</div>
+          </div>
+        </button>
+
+        <button class="menu-button" id="btn-create">
+          <div class="badge">✚</div>
+          <div class="label">
+            <div style="font-weight:700">Criar</div>
+            <div class="hint">Editor / Criador de conteúdo</div>
+          </div>
+        </button>
+
+        <button class="menu-button pulse" id="btn-settings">
+          <div class="badge">⚙</div>
+          <div class="label">
+            <div style="font-weight:700">Configurações</div>
+            <div class="hint">Ajustes, áudio, controles</div>
+          </div>
+        </button>
+
+        <button class="menu-button" id="btn-help">
+          <div class="badge">?</div>
+          <div class="label">
+            <div style="font-weight:700">Ajuda</div>
+            <div class="hint">Guia rápido e suporte</div>
+          </div>
+        </button>
+
+        <div class="cta" style="margin-top:8px">
+          <button class="primary" id="cta-continue">Continuar</button>
+          <button class="secondary" id="cta-exit">Sair</button>
+        </div>
+      </nav>
+    </aside>
+
+    <footer>Protótipo gerado automaticamente — arquivo único (HTML/CSS/JS). Abrir em um navegador para visualizar.</footer>
+  </main>
+
+  <script>
+    // Comportamento mínimo: foco acessível + atalhos de teclado
+    const buttons = document.querySelectorAll('.menu-button, .primary, .secondary');
+    buttons.forEach(b=>{b.tabIndex=0});
+
+    // Atalhos: tecla 1-5 para escolher ações rápidas
+    document.addEventListener('keydown', e=>{
+      if(document.activeElement && (document.activeElement.tagName==='INPUT' || document.activeElement.isContentEditable)) return;
+      switch(e.key){
+        case '1': document.getElementById('btn-play').click(); break;
+        case '2': document.getElementById('btn-load').click(); break;
+        case '3': document.getElementById('btn-create').click(); break;
+        case '4': document.getElementById('btn-settings').click(); break;
+        case '5': document.getElementById('btn-help').click(); break;
+      }
+    });
+
+    // Simples handlers (placeholder) — para mostrar resposta visual
+    function flash(el){
+      el.animate([
+        {transform:'scale(1)', boxShadow:'0 12px 30px rgba(2,6,23,0.45)'},
+        {transform:'scale(0.995)', boxShadow:'0 6px 18px rgba(2,6,23,0.25)'}
+      ],{duration:180,iterations:1,easing:'ease-out'});
+    }
+
+    document.getElementById('btn-play').addEventListener('click', e=>{ flash(e.currentTarget); alert('Iniciar jogo — ação de placeholder'); });
+    document.getElementById('btn-load').addEventListener('click', e=>{ flash(e.currentTarget); alert('Carregar jogo — ação de placeholder'); });
+    document.getElementById('btn-create').addEventListener('click', e=>{ flash(e.currentTarget); alert('Abrir criador — ação de placeholder'); });
+    document.getElementById('btn-settings').addEventListener('click', e=>{ flash(e.currentTarget); alert('Abrir configurações — ação de placeholder'); });
+    document.getElementById('btn-help').addEventListener('click', e=>{ flash(e.currentTarget); alert('Ajuda rápida — ação de placeholder'); });
+
+    document.getElementById('cta-continue').addEventListener('click', ()=>{
+      alert('Continuando... (placeholder)');
+    });
+    document.getElementById('cta-exit').addEventListener('click', ()=>{
+      if(confirm('Deseja realmente sair?')){
+        alert('Saindo... (placeholder)');
+      }
+    });
+
+    // para demonstração: foco no primeiro botão
+    window.addEventListener('load', ()=>{ document.getElementById('btn-play').focus(); });
+  </script>
+</body>
+</html>
+
